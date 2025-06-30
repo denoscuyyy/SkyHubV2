@@ -81,7 +81,7 @@ usernameLabel.TextScaled = true
 
 -- Logo
 local logoImage = Instance.new("ImageLabel", mainFrame)
-logoImage.Position = UDim2.new(0.74, 0, 0.03, 0)
+logoImage.Position = UDim2.new(0, 0, 0, 0)
 logoImage.Size = UDim2.new(0, 57, 0, 27)
 logoImage.Image = "rbxassetid://16813438802"
 logoImage.BackgroundTransparency = 1
