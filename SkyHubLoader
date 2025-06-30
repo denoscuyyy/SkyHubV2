@@ -1,25 +1,28 @@
--- UI Library Script
-local StarterGui = game:GetService("StarterGui")
+-- UI Library Script Lengkap
 local CoreGui = game:GetService("CoreGui")
+local Players = game:GetService("Players")
+local localPlayer = Players.LocalPlayer
 
--- Clear existing
+-- Clear UI jika sudah ada
 if CoreGui:FindFirstChild("ExploitUI") then
     CoreGui.ExploitUI:Destroy()
 end
 
+-- Buat ScreenGui
 local screenGui = Instance.new("ScreenGui", CoreGui)
 screenGui.Name = "ExploitUI"
 screenGui.ResetOnSpawn = false
 
+-- Frame Utama
 local mainFrame = Instance.new("Frame", screenGui)
 mainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
 mainFrame.Position = UDim2.new(0.499, 0, 0.5, 0)
 mainFrame.Size = UDim2.new(0, 386, 0, 233)
 mainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 
-local uiCorner = Instance.new("UICorner", mainFrame)
+Instance.new("UICorner", mainFrame)
 
--- Sidebar Up
+-- Sidebar Atas
 local sidebarUp = Instance.new("Frame", mainFrame)
 sidebarUp.Position = UDim2.new(0, 0, 0, 0)
 sidebarUp.Size = UDim2.new(0, 100, 0, 201)
@@ -27,7 +30,8 @@ sidebarUp.BackgroundColor3 = Color3.new(1, 1, 1)
 sidebarUp.BackgroundTransparency = 0.9
 
 local sidebarScroll = Instance.new("ScrollingFrame", sidebarUp)
-sidebarScroll.Size = UDim2.new(1, 0, 1, 0)
+sidebarScroll.Position = UDim2.new(0, 0, 0.134, 0)
+sidebarScroll.Size = UDim2.new(0, 100, 0, 174)
 sidebarScroll.BackgroundTransparency = 1
 sidebarScroll.CanvasSize = UDim2.new(0, 0, 4, 0)
 sidebarScroll.ScrollBarThickness = 1
@@ -42,7 +46,7 @@ padding.PaddingBottom = UDim.new(0, 5)
 padding.PaddingLeft = UDim.new(0, 10)
 padding.PaddingRight = UDim.new(0, 10)
 
--- Template button
+-- Template Button Sidebar
 local templateButton = Instance.new("TextButton")
 templateButton.BackgroundColor3 = Color3.fromRGB(0, 0, 255)
 templateButton.BackgroundTransparency = 1
@@ -52,39 +56,45 @@ templateButton.Text = "Template"
 templateButton.Name = "SidebarButton"
 templateButton.Parent = sidebarScroll
 
--- Sidebar Bottom
+-- Sidebar Bawah
 local sidebarBottom = Instance.new("Frame", mainFrame)
-sidebarBottom.Position = UDim2.new(0, 0, 0.862, 0)
+sidebarBottom.Position = UDim2.new(0, 0, 0.863, 0)
 sidebarBottom.Size = UDim2.new(0, 100, 0, 32)
-sidebarBottom.BackgroundTransparency = 1
+sidebarBottom.BackgroundColor3 = Color3.new(1, 1, 1)
+sidebarBottom.BackgroundTransparency = 0.95
 
--- Profile image
+-- Profile Image dari Avatar
 local profileImage = Instance.new("ImageLabel", mainFrame)
-profileImage.Position = UDim2.new(0.03, 0, 0.03, 0)
-profileImage.Size = UDim2.new(0, 40, 0, 40)
-profileImage.Image = "rbxassetid://123456789"
+profileImage.Position = UDim2.new(0.015, 0, 0.893, 0)
+profileImage.Size = UDim2.new(0, 20, 0, 18)
+profileImage.BackgroundTransparency = 1
+profileImage.Image = string.format("https://www.roblox.com/headshot-thumbnail/image?userId=%d&width=420&height=420&format=png", localPlayer.UserId)
+
+-- Username
+local usernameLabel = Instance.new("TextLabel", mainFrame)
+usernameLabel.Position = UDim2.new(0.088, 0, 0.893, 0)
+usernameLabel.Size = UDim2.new(0, 58, 0, 18)
+usernameLabel.BackgroundTransparency = 1
+usernameLabel.TextColor3 = Color3.new(1, 1, 1)
+usernameLabel.Text = localPlayer.Name
+usernameLabel.TextScaled = true
 
 -- Logo
 local logoImage = Instance.new("ImageLabel", mainFrame)
 logoImage.Position = UDim2.new(0.74, 0, 0.03, 0)
-logoImage.Size = UDim2.new(0, 40, 0, 40)
-logoImage.Image = "rbxassetid://123456789"
+logoImage.Size = UDim2.new(0, 57, 0, 27)
+logoImage.Image = "rbxassetid://16813438802"
+logoImage.BackgroundTransparency = 1
 
--- Username label
-local usernameLabel = Instance.new("TextLabel", mainFrame)
-usernameLabel.Position = UDim2.new(0.3, 0, 0.03, 0)
-usernameLabel.Size = UDim2.new(0, 100, 0, 20)
-usernameLabel.Text = "Username"
-usernameLabel.TextColor3 = Color3.new(1, 1, 1)
-usernameLabel.BackgroundTransparency = 1
-
--- Title label
+-- Title SkyHub
 local titleLabel = Instance.new("TextLabel", mainFrame)
-titleLabel.Position = UDim2.new(0.3, 0, 0.13, 0)
-titleLabel.Size = UDim2.new(0, 150, 0, 20)
-titleLabel.Text = "Title"
-titleLabel.TextColor3 = Color3.new(1, 1, 1)
+titleLabel.Position = UDim2.new(0.277, 0, 0, 0)
+titleLabel.Size = UDim2.new(0, 50, 0, 27)
 titleLabel.BackgroundTransparency = 1
+titleLabel.Text = "SkyHub"
+titleLabel.TextColor3 = Color3.new(1, 1, 1)
+titleLabel.TextScaled = true
+titleLabel.Font = Enum.Font.SourceSansBold
 
 -- Container
 local container = Instance.new("ScrollingFrame", mainFrame)
@@ -104,7 +114,7 @@ containerPadding.PaddingTop = UDim.new(0, 2)
 containerPadding.PaddingLeft = UDim.new(0, 8)
 containerPadding.PaddingRight = UDim.new(0, 10)
 
--- Template frame in container
+-- Template Item dalam Container
 local containerTemplate = Instance.new("Frame", container)
 containerTemplate.Size = UDim2.new(0, 270, 0, 27)
 containerTemplate.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
@@ -113,7 +123,7 @@ local uiStroke = Instance.new("UIStroke", containerTemplate)
 uiStroke.Color = Color3.fromRGB(255, 255, 255)
 uiStroke.Transparency = 0.76
 
-local uiCorner2 = Instance.new("UICorner", containerTemplate)
+Instance.new("UICorner", containerTemplate)
 
 local containerLabel = Instance.new("TextLabel", containerTemplate)
 containerLabel.Size = UDim2.new(0, 233, 0, 27)
@@ -121,8 +131,9 @@ containerLabel.Position = UDim2.new(0, 0, 0, 0)
 containerLabel.BackgroundTransparency = 1
 containerLabel.TextColor3 = Color3.new(1, 1, 1)
 containerLabel.Text = "Item"
+containerLabel.TextScaled = true
 
 local containerBtn = Instance.new("ImageButton", containerTemplate)
 containerBtn.Size = UDim2.new(0, 19, 0, 18)
 containerBtn.Position = UDim2.new(0.889, 0, 0.139, 0)
-containerBtn.Image = "rbxassetid://123456789"
+containerBtn.Image = "rbxassetid://123456789" -- Ganti ID ini sesuai kebutuhan
