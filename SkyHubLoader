@@ -1,0 +1,128 @@
+-- UI Library Script
+local StarterGui = game:GetService("StarterGui")
+local CoreGui = game:GetService("CoreGui")
+
+-- Clear existing
+if CoreGui:FindFirstChild("ExploitUI") then
+    CoreGui.ExploitUI:Destroy()
+end
+
+local screenGui = Instance.new("ScreenGui", CoreGui)
+screenGui.Name = "ExploitUI"
+screenGui.ResetOnSpawn = false
+
+local mainFrame = Instance.new("Frame", screenGui)
+mainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+mainFrame.Position = UDim2.new(0.499, 0, 0.5, 0)
+mainFrame.Size = UDim2.new(0, 386, 0, 233)
+mainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+
+local uiCorner = Instance.new("UICorner", mainFrame)
+
+-- Sidebar Up
+local sidebarUp = Instance.new("Frame", mainFrame)
+sidebarUp.Position = UDim2.new(0, 0, 0, 0)
+sidebarUp.Size = UDim2.new(0, 100, 0, 201)
+sidebarUp.BackgroundColor3 = Color3.new(1, 1, 1)
+sidebarUp.BackgroundTransparency = 0.9
+
+local sidebarScroll = Instance.new("ScrollingFrame", sidebarUp)
+sidebarScroll.Size = UDim2.new(1, 0, 1, 0)
+sidebarScroll.BackgroundTransparency = 1
+sidebarScroll.CanvasSize = UDim2.new(0, 0, 4, 0)
+sidebarScroll.ScrollBarThickness = 1
+sidebarScroll.ScrollingDirection = Enum.ScrollingDirection.Y
+
+local gridLayout = Instance.new("UIGridLayout", sidebarScroll)
+gridLayout.CellSize = UDim2.new(0, 82, 0, 16)
+
+local padding = Instance.new("UIPadding", sidebarScroll)
+padding.PaddingTop = UDim.new(0, 0)
+padding.PaddingBottom = UDim.new(0, 5)
+padding.PaddingLeft = UDim.new(0, 10)
+padding.PaddingRight = UDim.new(0, 10)
+
+-- Template button
+local templateButton = Instance.new("TextButton")
+templateButton.BackgroundColor3 = Color3.fromRGB(0, 0, 255)
+templateButton.BackgroundTransparency = 1
+templateButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+templateButton.Size = UDim2.new(0, 82, 0, 16)
+templateButton.Text = "Template"
+templateButton.Name = "SidebarButton"
+templateButton.Parent = sidebarScroll
+
+-- Sidebar Bottom
+local sidebarBottom = Instance.new("Frame", mainFrame)
+sidebarBottom.Position = UDim2.new(0, 0, 0.862, 0)
+sidebarBottom.Size = UDim2.new(0, 100, 0, 32)
+sidebarBottom.BackgroundTransparency = 1
+
+-- Profile image
+local profileImage = Instance.new("ImageLabel", mainFrame)
+profileImage.Position = UDim2.new(0.03, 0, 0.03, 0)
+profileImage.Size = UDim2.new(0, 40, 0, 40)
+profileImage.Image = "rbxassetid://123456789"
+
+-- Logo
+local logoImage = Instance.new("ImageLabel", mainFrame)
+logoImage.Position = UDim2.new(0.74, 0, 0.03, 0)
+logoImage.Size = UDim2.new(0, 40, 0, 40)
+logoImage.Image = "rbxassetid://123456789"
+
+-- Username label
+local usernameLabel = Instance.new("TextLabel", mainFrame)
+usernameLabel.Position = UDim2.new(0.3, 0, 0.03, 0)
+usernameLabel.Size = UDim2.new(0, 100, 0, 20)
+usernameLabel.Text = "Username"
+usernameLabel.TextColor3 = Color3.new(1, 1, 1)
+usernameLabel.BackgroundTransparency = 1
+
+-- Title label
+local titleLabel = Instance.new("TextLabel", mainFrame)
+titleLabel.Position = UDim2.new(0.3, 0, 0.13, 0)
+titleLabel.Size = UDim2.new(0, 150, 0, 20)
+titleLabel.Text = "Title"
+titleLabel.TextColor3 = Color3.new(1, 1, 1)
+titleLabel.BackgroundTransparency = 1
+
+-- Container
+local container = Instance.new("ScrollingFrame", mainFrame)
+container.Position = UDim2.new(0.259, 0, 0.116, 0)
+container.Size = UDim2.new(0, 286, 0, 206)
+container.BackgroundTransparency = 1
+container.CanvasSize = UDim2.new(0, 0, 4, 0)
+container.ScrollBarThickness = 1
+container.ScrollingDirection = Enum.ScrollingDirection.Y
+
+local containerGrid = Instance.new("UIGridLayout", container)
+containerGrid.CellSize = UDim2.new(0, 270, 0, 27)
+
+local containerPadding = Instance.new("UIPadding", container)
+containerPadding.PaddingBottom = UDim.new(0, 5)
+containerPadding.PaddingTop = UDim.new(0, 2)
+containerPadding.PaddingLeft = UDim.new(0, 8)
+containerPadding.PaddingRight = UDim.new(0, 10)
+
+-- Template frame in container
+local containerTemplate = Instance.new("Frame", container)
+containerTemplate.Size = UDim2.new(0, 270, 0, 27)
+containerTemplate.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+
+local uiStroke = Instance.new("UIStroke", containerTemplate)
+uiStroke.Color = Color3.fromRGB(255, 255, 255)
+uiStroke.Transparency = 0.76
+
+local uiCorner2 = Instance.new("UICorner", containerTemplate)
+
+local containerLabel = Instance.new("TextLabel", containerTemplate)
+containerLabel.Size = UDim2.new(0, 233, 0, 27)
+containerLabel.Position = UDim2.new(0, 0, 0, 0)
+containerLabel.BackgroundTransparency = 1
+containerLabel.TextColor3 = Color3.new(1, 1, 1)
+containerLabel.Text = "Item"
+
+local containerBtn = Instance.new("ImageButton", containerTemplate)
+containerBtn.Size = UDim2.new(0, 19, 0, 18)
+containerBtn.Position = UDim2.new(0.889, 0, 0.139, 0)
+containerBtn.Image = "rbxassetid://123456789"
