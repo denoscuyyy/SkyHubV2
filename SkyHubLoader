@@ -1,4 +1,3 @@
--- UI Library Script Lengkap
 local CoreGui = game:GetService("CoreGui")
 local Players = game:GetService("Players")
 local localPlayer = Players.LocalPlayer
@@ -114,26 +113,39 @@ containerPadding.PaddingTop = UDim.new(0, 2)
 containerPadding.PaddingLeft = UDim.new(0, 8)
 containerPadding.PaddingRight = UDim.new(0, 10)
 
--- Template Item dalam Container
-local containerTemplate = Instance.new("Frame", container)
-containerTemplate.Size = UDim2.new(0, 270, 0, 27)
-containerTemplate.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+-- Fungsi publik untuk ditambahkan ke module
+local function AddContainerButton(text, callback)
+    local item = Instance.new("Frame")
+    item.Size = UDim2.new(0, 270, 0, 27)
+    item.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 
-local uiStroke = Instance.new("UIStroke", containerTemplate)
-uiStroke.Color = Color3.fromRGB(255, 255, 255)
-uiStroke.Transparency = 0.76
+    local stroke = Instance.new("UIStroke", item)
+    stroke.Color = Color3.fromRGB(255, 255, 255)
+    stroke.Transparency = 0.76
 
-Instance.new("UICorner", containerTemplate)
+    Instance.new("UICorner", item)
 
-local containerLabel = Instance.new("TextLabel", containerTemplate)
-containerLabel.Size = UDim2.new(0, 233, 0, 27)
-containerLabel.Position = UDim2.new(0, 0, 0, 0)
-containerLabel.BackgroundTransparency = 1
-containerLabel.TextColor3 = Color3.new(1, 1, 1)
-containerLabel.Text = "Item"
-containerLabel.TextScaled = true
+    local label = Instance.new("TextLabel", item)
+    label.Size = UDim2.new(0, 233, 0, 27)
+    label.Position = UDim2.new(0, 0, 0, 0)
+    label.BackgroundTransparency = 1
+    label.TextColor3 = Color3.new(1, 1, 1)
+    label.Text = text
+    label.TextScaled = true
 
-local containerBtn = Instance.new("ImageButton", containerTemplate)
-containerBtn.Size = UDim2.new(0, 19, 0, 18)
-containerBtn.Position = UDim2.new(0.889, 0, 0.139, 0)
-containerBtn.Image = "rbxassetid://123456789" -- Ganti ID ini sesuai kebutuhan
+    local button = Instance.new("ImageButton", item)
+    button.Size = UDim2.new(0, 19, 0, 18)
+    button.Position = UDim2.new(0.889, 0, 0.139, 0)
+    button.Image = "rbxassetid://123456789"
+
+    button.MouseButton1Click:Connect(function()
+        pcall(callback)
+    end)
+
+    item.Parent = container
+end
+
+-- Return fungsi publik
+return {
+    AddContainerButton = AddContainerButton
+}
