@@ -1,0 +1,28 @@
+-- Load Library
+local SkyHubLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/denoscuyyy/SkyHubV2/refs/heads/main/SkyHubLoader')))()
+
+-- Membuat Window
+local Window = SkyHubLib:MakeWindow({
+    Name = "SkyHub",
+    HidePremium = false,
+    SaveConfig = true,
+    ConfigFolder = "SkyTest"
+})
+
+-- Membuat Section
+local Section = Window:MakeSection({
+    Name = "Teleport",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+-- Tambahkan tombol ke dalam section
+Section:AddButton({
+    Name = "To Player",
+    Callback = function()
+        SkyHubLib.AddContainerButton("Teleport to Player", function()
+            print("Teleporting...")
+            -- Logika teleportasi ditaruh di sini
+        end)
+    end
+})
